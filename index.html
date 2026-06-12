@@ -1,7 +1,83 @@
+<!--
+=============================================================================
+  NOURISH LABS — BEYOND DAY TANKS
+  White Paper / Web Page
+=============================================================================
+
+  DEVELOPER HANDOFF NOTES
+  -----------------------
+
+  DEPLOYMENT CHECKLIST (update before going live):
+
+  1. CANONICAL URL
+     Find: <link rel="canonical" href="https://nourishlabs.ca/white-paper/beyond-day-tanks">
+     Update to the final published URL.
+
+  2. JSON-LD STRUCTURED DATA
+     Find: "@id": "https://nourishlabs.ca/white-paper/beyond-day-tanks"
+     Also update:
+       "datePublished" — set to actual publish date (YYYY-MM-DD)
+       "dateModified"  — set to last edit date
+       "image" URL     — replace with hosted og-image.jpg path (see note 4)
+
+  3. OG / TWITTER IMAGE
+     Currently embedded as base64 (works immediately, no hosting required).
+     For production, extract to a separate file (og-image.jpg, 1200×630px)
+     and replace the base64 src with a full absolute URL:
+       <meta property="og:image" content="https://nourishlabs.ca/assets/og-image.jpg">
+     This improves page load time and CDN cacheability.
+
+  4. FAVICON
+     Replace the placeholder favicon link below with your actual favicon path.
+
+  5. TWITTER HANDLE
+     Find: <meta name="twitter:site" content="@nourishlabs">
+     Update to the correct handle if different.
+
+  6. CTA BUTTON
+     Find: <a href="#" class="cta-btn">Request a Demo</a><!-- TODO: update href to demo/contact URL -->
+     Update href to your contact form, Calendly link, or demo page URL.
+
+  FONTS
+  -----
+  Loaded from Google Fonts CDN (requires internet connection to render correctly):
+    - Playfair Display (headings)
+    - DM Sans (body)
+    - DM Mono (labels, captions, code)
+
+  If self-hosting fonts is required, download from:
+  https://fonts.google.com and update the <link> tags accordingly.
+
+  IMAGES
+  ------
+  All 4 images are base64-embedded — no separate asset files required.
+  Images included:
+    - Nourish Labs logo (white, for dark backgrounds) — nav + footer
+    - Nourish Labs ALLSET product render — Section 06
+    - Miracle Valley installation photo — Section 06
+    - OG/social preview image — meta tags only (not visible on page)
+
+  STRUCTURE
+  ---------
+  Single self-contained HTML file. No external CSS, JS, or asset dependencies
+  beyond Google Fonts. Drop into any web server or CMS as a standalone page.
+
+  Sections:
+    Cover → Executive Summary → Stats → 
+    01 Nutrient Science → 02 Contamination & Biosecurity →
+    Pull Quote → 03 Crop Steering → 03.5 The Science →
+    04 Operational Efficiency → 05 Compliance & Traceability →
+    06 The ALLSET System → Full Comparison → Final Takeaway →
+    CTA → Footer
+
+=============================================================================
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="/favicon.png"><!-- TODO: update favicon path -->
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- ── Primary Meta ── -->
@@ -566,6 +642,32 @@
     font-size: 13px;
     color: #414141;
     font-weight: 500;
+  }
+
+  /* ── CIP CALLOUT ── */
+  .cip-callout {
+    margin-top: 24px;
+    padding: 24px 28px;
+    border: 1px solid var(--rule);
+    border-left: 3px solid #FF9E1B;
+    border-radius: 0 4px 4px 0;
+    background: var(--cream);
+  }
+
+  .cip-callout-head {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #414141;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+
+  .cip-callout-text {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.8;
   }
 
   /* ── STEERING SCIENCE SECTION ── */
@@ -1346,6 +1448,13 @@
     border-bottom: none;
   }
 </style>
+  <noscript>
+    <style>
+      body { font-family: Georgia, 'Times New Roman', serif; }
+      .section-heading, .exec-lead, .cover-title { font-family: Georgia, serif; }
+      .section-label, .section-num, .stat-label { font-family: 'Courier New', monospace; }
+    </style>
+  </noscript>
 </head>
 <body>
 
@@ -1477,7 +1586,7 @@
 
     <div class="two-col">
       <div>
-        <p class="section-intro">Nutrient-rich standing water is an ideal growth medium for biofilm, algae, bacteria, and fungal pathogens. Day tanks don't just hold solution—they amplify risk across your entire facility.</p>
+        <p class="section-intro">Nutrient-rich standing water is an ideal growth medium for biofilm, algae, bacteria, and fungal pathogens. Day tanks don't just hold solution—they amplify risk across your entire facility, and the damage doesn't stop at the tank.</p>
 
         <table class="mini-table">
           <thead>
@@ -1496,23 +1605,29 @@
               <td>Chemical Degradation</td>
               <td>UV exposure and standing time degrade light-sensitive chelates like iron and organic compounds, reducing their efficacy before delivery.</td>
             </tr>
+            <tr>
+              <td>Emitter & Line Fouling</td>
+              <td>Mineral salt precipitation, biofilm accumulation, and organic matter suspended in static solution progressively occlude drip emitters and distribution lines — reducing flow uniformity, accelerating component wear, and introducing contamination directly to the root zone.</td>
+            </tr>
           </tbody>
         </table>
 
-        <p style="font-size:15px; color:var(--ink-soft); line-height:1.75; margin-top:16px;">
-          On-demand systems <span class="hl">mix and flush lines between applications</span>, eliminating the standing-water window that pathogens require to establish. There is no biofilm surface area to colonize. No shared reservoir to cross-contaminate rooms.
-        </p>
+        <div class="cip-callout">
+          <h4 class="cip-callout-head">Automated Sanitation: System-Wide, Every Cycle</h4>
+          <p class="cip-callout-text">Unlike day tank systems where standing nutrient solution persists between feed events — providing a continuous window for biofilm establishment, pathogen amplification, and mineral precipitation — the ALLSET™ integrates Clean-in-Place (CIP) protocols that act on the full distribution network after every cycle. Automated valve sequencing drives a pressurised flush through lateral lines, zone manifolds, and drip emitters, removing residual solution before salts can precipitate and adhere to internal surfaces.</p>
+          <p class="cip-callout-text" style="margin-top:12px;">The agronomic and operational consequences are significant. Drip emitters operating under chronic partial occlusion deliver inconsistent shot volumes — undermining the EC stability and dryback precision that crop steering depends on. Periodic complete blockage forces unplanned maintenance interventions and emitter replacement. Research in controlled-environment horticulture consistently links irregular emitter flow to substrate heterogeneity, differential plant stress, and measurable yield variance within a room. Automated post-cycle flushing prevents the accumulation cascade from initiating — extending emitter service life, preserving flow uniformity, and eliminating a chronic vector for root-zone contamination.</p>
+        </div>
       </div>
 
       <div class="sidebar-box">
         <h4>Biosecurity Advantages</h4>
         <ul>
-          <li>No standing water between feed events eliminates biofilm establishment window</li>
-          <li>Automated line flushing removes residual solution after each cycle</li>
-          <li>Room isolation—contamination cannot spread via shared nutrient reservoir</li>
-          <li>Freshly mixed solution means no degraded chelates or reactive precipitates</li>
-          <li>Clean-in-Place (CIP) protocols integrated into system operation</li>
-          <li>Automated valve flushing reduces manual cleaning labor and downtime</li>
+          <li>No standing water between feed events eliminates the biofilm establishment window in tanks, lines, and emitters</li>
+          <li>Automated post-cycle flush purges residual solution from the full distribution network before mineral precipitation can occur</li>
+          <li>Room isolation — contamination cannot spread via a shared nutrient reservoir</li>
+          <li>Freshly mixed solution means no degraded chelates, reactive precipitates, or suspended organic matter entering the root zone</li>
+          <li>CIP protocols maintain emitter flow uniformity, preserving the shot-volume precision that EC and dryback management require</li>
+          <li>Extended emitter and line service life reduces replacement costs and unplanned maintenance interventions</li>
         </ul>
       </div>
     </div>
@@ -1789,8 +1904,8 @@
       <div class="spec-item">
         <div class="spec-icon">↺</div>
         <div class="spec-text">
-          <strong>Integrated CIP</strong>
-          <span>Clean-in-Place protocols run automatically between cycles — no manual tank scrubbing</span>
+          <strong>Automated Sanitation (CIP)</strong>
+          <span>Post-cycle Clean-in-Place protocols flush the full distribution network — tank, lines, manifolds, and emitters — preventing mineral precipitation, biofilm establishment, and flow occlusion. Extends emitter service life and preserves shot-volume uniformity across zones.</span>
         </div>
       </div>
       <div class="spec-item">
@@ -1861,8 +1976,8 @@
         </tr>
         <tr>
           <td>System Cleanliness</td>
-          <td class="f-bad">Requires manual tank scrubbing</td>
-          <td class="f-good">Integrated automated flushing</td>
+          <td class="f-bad">Requires manual tank scrubbing; lines and emitters accumulate mineral scale and biofilm between cleans</td>
+          <td class="f-good">Automated post-cycle CIP flush covers tank, lines, manifolds, and emitters every cycle — no manual intervention required</td>
         </tr>
         <tr>
           <td>Crop Steering</td>
@@ -1919,7 +2034,7 @@
   <p class="cta-tag">Ready to Eliminate Day Tanks?</p>
   <h2 class="cta-heading">See Nourish Labs in Your Facility</h2>
   <p class="cta-sub">Talk to our cultivation team about transitioning to on-demand precision fertigation—and what it means for your yield, compliance, and bottom line.</p>
-  <a href="#" class="cta-btn">Request a Demo</a>
+  <a href="mailto:allset@nourishlabs.ca" class="cta-btn">Request a Demo</a>
 </section>
 
 <!-- ══════════════ FOOTER ══════════════ -->
